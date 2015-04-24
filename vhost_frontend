@@ -1,20 +1,25 @@
-<VirtualHost *:80>
-
-    ServerName	yeswead.local
-
-    DocumentRoot /var/www/frontend
-    
-    <Directory /var/www/frontend>
+<VirtualHost *:80> 
+    ServerName          yeswead.local
+    ServerAlias         yeswead.local
+    DocumentRoot        /var/www/frontend
+    <Directory "/var/www/frontend">
+        Options         FollowSymLinks
         AllowOverride   all
         RewriteEngine   on
         RewriteCond %{REQUEST_URI} !.*\.(ico|png|svg|gif|jpg|css|js|ttf)$ [NC]
         RewriteCond %{REQUEST_URI} !userimages\/.*$ [NC]
-        RewriteRule ^.* main.php [QSA,L]    
+        RewriteRule ^.* main.php [QSA,L]
     </Directory>
-
+    LogLevel            warn
     ErrorLog "/var/log/apache2/yeswead.local-error.log"
-    CustomLog "/var/log/apache2/yeswead.local-access.log" common
-
-    LogLevel warn
-
+    CustomLog "/var/log/apache2/yeswead.local-access.log" combined
+    ExpiresActive       On
+    ExpiresByType       image/gif "access plus 1 weeks"
+    ExpiresByType       image/jpg "access plus 1 weeks"
+    ExpiresByType       image/jpeg "access plus 1 weeks"
+    ExpiresByType       image/png "access plus 1 weeks"
+    ExpiresByType       image/ico "access plus 1 months"
+    ExpiresByType       application/javascript "now plus 1 week"
+    ExpiresByType       text/javascript "now plus 1 week"
+    ExpiresByType       text/css "now plus 1 week"
 </VirtualHost>

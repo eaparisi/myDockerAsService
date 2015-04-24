@@ -1,10 +1,8 @@
 <VirtualHost *:80>
-
     ServerName          cdn.yeswead.local
-    
     DocumentRoot        /var/www/static
-    
     <Directory "/var/www/static">
+        Options         FollowSymLinks
         AllowOverride   None
         <ifModule mod_rewrite.c>
             RewriteEngine On
@@ -14,10 +12,8 @@
             RewriteRule (.*) index.html [L]
         </ifModule>
     </Directory>
-
     ErrorLog "/var/log/apache2/cdn.yeswead.local-error.log"
-    CustomLog "/var/log/apache2/cdn.yeswead.local-access.log" common
-    
+    CustomLog "/var/log/apache2/cdn.yeswead.local-access.log" combined    
     LogLevel            warn
-    
 </VirtualHost>
+

@@ -1,9 +1,9 @@
 
-# Use Ubuntu 14.04 as base image
-FROM ubuntu:trusty
+# Use Ubuntu 13.10 as base image
+FROM ubuntu:saucy
 
 # Add Ubuntu mirrors
-# RUN echo 'deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main universe multiverse' > /etc/apt/sources.list
+# RUN echo 'deb mirror://mirrors.ubuntu.com/mirrors.txt saucy main universe multiverse' > /etc/apt/sources.list
 
 # Update package lists
 RUN apt-get update --fix-missing
@@ -11,6 +11,15 @@ RUN apt-get update --fix-missing
 # Root Password
 RUN echo testpass > /root/pw.txt &&\
     echo "root:$(cat /root/pw.txt)" | chpasswd
+
+# Timezone
+RUN echo America/Argentina/Buenos_Aires > /etc/timezone &&\
+    dpkg-reconfigure -f noninteractive tzdata &&\
+    locale-gen en_US en_US.UTF-8 &&\
+    dpkg-reconfigure locales
+
+# Make Utils
+RUN apt-get install -y make apt-utils 
 
 # Apache2
 RUN apt-get install -y apache2
@@ -20,7 +29,7 @@ RUN apt-get install -y php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-gd ph
 
 # Apache2 ModRewrite
 RUN a2enmod rewrite &&\ 
-    sed -i 's/DocumentRoot\ \/var\/www\/yii/DocumentRoot\ \/var\/www\/yii\n<Directory\ "\/var\/www\/yii">\n\ AllowOverride\ All\n<\/Directory>/g' /etc/apache2/sites-available/000-default.conf &&\ 
+    sed -i 's/DocumentRoot\ \/var\/www/DocumentRoot\ \/var\/www\n<Directory\ "\/var\/www">\n\ AllowOverride\ All\n<\/Directory>/g' /etc/apache2/sites-available/000-default.conf &&\ 
     service apache2 restart
 
 # PHP php.ini Configuration
@@ -58,22 +67,18 @@ RUN apt-get install -y subversion
 # Curl
 RUN apt-get install -y curl
 
-# Composer
-RUN curl -s http://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
-RUN composer global require "fxp/composer-asset-plugin:1.0.0"
+# Upgrade
+RUN apt-get upgrade -y
 
 # Vhosts - Hosts
 ADD ./vhost_frontend /etc/apache2/sites-available/myvhost_frontend.conf
 ADD ./vhost_backend /etc/apache2/sites-available/myvhost_backend.conf
 ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
 
-# Upgrade
-RUN apt-get upgrade -y
-
 # Pecl_HTML
 RUN apt-get update
 # RUN apt-get install -y pear
+RUN apt-get install -y php-pear 
 RUN apt-get install -y php-http
 RUN apt-get install -y php5-dev
 RUN apt-get install -y libcurl3
@@ -82,8 +87,29 @@ RUN apt-get install -y libcurl4-openssl-dev
 RUN pear config-set php_ini /etc/php5/apache2/php.ini
 RUN pecl config-set php_ini /etc/php5/apache2/php.ini
 RUN pecl install raphf 
+RUN pecl channel-update pecl.php.net
 RUN pecl install pecl_http-1.7.6
+RUN echo "extension = raphf.so"     >> /etc/php5/apache2/php.ini &&\
+    echo "extension = propro.so"    >> /etc/php5/apache2/php.ini &&\
+    echo "extension = hash.so"      >> /etc/php5/apache2/php.ini &&\
+    echo "extension = iconv.so"     >> /etc/php5/apache2/php.ini &&\
+    echo "extension = json.so"      >> /etc/php5/apache2/php.ini &&\
+    echo "extension = http.so"      >> /etc/php5/apache2/php.ini
 RUN service apache2 restart
+
+# Timezone
+RUN echo "date.timezone = America/Argentina/Buenos_Aires" >> /etc/php5/apache2/php.ini
+
+# Apache2 Mod Expires
+RUN a2enmod expires
+
+# JsonDecode Support
+RUN apt-get install php5-json &&\
+	service apache2 restart
+
+# Hosts del Container
+RUN echo "127.0.0.1 yeswead.local api.yeswead.local www.yeswead.local cdn.yeswead.local localhost" >> /etc/hosts &&\
+    echo yeswead > /etc/hostname
 
 # Entrypoint
 ADD ./startup.sh /root/run.sh
