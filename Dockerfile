@@ -64,11 +64,26 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN composer global require "fxp/composer-asset-plugin:1.0.0"
 
 # Vhosts - Hosts
-ADD ./vhost /etc/apache2/sites-available/myvhost.conf
-RUN mkdir /var/www/yii
+ADD ./vhost_frontend /etc/apache2/sites-available/myvhost_frontend.conf
+ADD ./vhost_backend /etc/apache2/sites-available/myvhost_backend.conf
+ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
 
 # Upgrade
 RUN apt-get upgrade -y
+
+# Pecl_HTML
+RUN apt-get update
+# RUN apt-get install -y pear
+RUN apt-get install -y php-http
+RUN apt-get install -y php5-dev
+RUN apt-get install -y libcurl3
+RUN apt-get install -y libpcre3-dev
+RUN apt-get install -y libcurl4-openssl-dev
+RUN pear config-set php_ini /etc/php5/apache2/php.ini
+RUN pecl config-set php_ini /etc/php5/apache2/php.ini
+RUN pecl install raphf 
+RUN pecl install pecl_http-1.7.6
+RUN service apache2 restart
 
 # Entrypoint
 ADD ./startup.sh /root/run.sh

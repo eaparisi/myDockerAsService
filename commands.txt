@@ -1,18 +1,16 @@
 
 // To build docker image
-docker build -t eparisi/yeswead_trusty_service --force-rm=true .
+docker build -t eparisi/yeswead_app --force-rm=true .
 
 http://172.17.42.1  (desde otro container)
 
 // To instantiate docker image (create docker container)
 docker run --env ROOTPASS=devpass 
-	   -e MYDOMAIN=yesweadtrustyservice.com.ar
-	   -e MYWEBROOT=basic
 	   -p 1022:22 
 	   -p 1080:80 
-	   -v /home/eric/git/yii2test:/var/www/yii:rw
-	   --name YesWeAdTrustyService
+	   -v /home/eric/git/yeswead:/var/www:rw
+	   --name YesWeAdApp
 	   -d 
-	   eparisi/yeswead_trusty_service
+	   eparisi/yeswead_app
 
-docker run --env ROOTPASS=devpass -e MYDOMAIN=yesweadtrustyservice.com.ar -e MYWEBROOT=basic -p 1022:22 -p 1080:80 -v /home/eric/git/yii2test:/var/www/yii:rw --name YesWeAdTrustyService -d eparisi/yeswead_trusty_service
+docker run --env ROOTPASS=devpass -p 1022:22 -p 1080:80 -v /home/eric/git/yeswead:/var/www:rw --name YesWeAdApp -d eparisi/yeswead_app

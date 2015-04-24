@@ -1,0 +1,20 @@
+<VirtualHost *:80>
+
+    ServerName	yeswead.local
+
+    DocumentRoot /var/www/frontend
+    
+    <Directory /var/www/frontend>
+        AllowOverride   all
+        RewriteEngine   on
+        RewriteCond %{REQUEST_URI} !.*\.(ico|png|svg|gif|jpg|css|js|ttf)$ [NC]
+        RewriteCond %{REQUEST_URI} !userimages\/.*$ [NC]
+        RewriteRule ^.* main.php [QSA,L]    
+    </Directory>
+
+    ErrorLog "/var/log/apache2/yeswead.local-error.log"
+    CustomLog "/var/log/apache2/yeswead.local-access.log" common
+
+    LogLevel warn
+
+</VirtualHost>

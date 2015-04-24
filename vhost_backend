@@ -1,0 +1,10 @@
+<VirtualHost *:80> 
+
+    ServerName          api.yeswead.local
+
+    DocumentRoot        /var/www/backend
+
+    ErrorLog "/var/log/apache2/api.yeswead.local-error.log"
+    CustomLog "/var/log/apache2/api.yeswead.local-access.log" common
+
+</VirtualHost>
