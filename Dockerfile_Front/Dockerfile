@@ -97,6 +97,7 @@ RUN service apache2 restart
 # Vhosts - Hosts
 ADD ./vhost_frontend /etc/apache2/sites-available/myvhost_frontend.conf
 ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
+RUN service apache2 restart
 
 # Apache2 Mod Expires
 RUN a2enmod expires

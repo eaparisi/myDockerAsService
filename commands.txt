@@ -1,6 +1,6 @@
 
 // To build docker image FRONT
-docker build -t eparisi/devgenbase2 --force-rm=true .
+docker build -t eparisi/yeswead_front --force-rm=true .
 
 // To build docker image FRONT
 docker build -t eparisi/yeswead_back --force-rm=true .
@@ -17,7 +17,7 @@ docker run --env ROOTPASS=devpass
 	   eparisi/devgenbase2
 
 Front
-docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /home/eric/git/yeswead_Front/frontend:/var/www/frontend:rw --name YesWeAd_Front -d eparisi/devgenbase2
+docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /home/eric/git/yeswead_Front/frontend:/var/www/frontend:rw --name YesWeAd_Front -d eparisi/yeswead_front
 
 Back
 docker run --env ROOTPASS=devpass -p 1023:22 -p 1080:80 -v /home/eric/git/yeswead_Back/backend:/var/www/backend:rw --name YesWeAd_Back -d eparisi/yeswead_back
