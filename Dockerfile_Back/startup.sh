@@ -12,6 +12,8 @@ php5enmod mcrypt
 
 service apache2 restart
 
+service memcached start
+
 cp /usr/share/zoneinfo/America/Buenos_Aires /etc/localtime
 
 /usr/sbin/sshd -D &
