@@ -67,33 +67,6 @@ RUN apt-get install -y subversion
 # Curl
 RUN apt-get install -y curl
 
-# Composer
-RUN curl -s http://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
-RUN composer global require "fxp/composer-asset-plugin:1.0.0"
-
-# Pecl_HTML
-RUN apt-get update
-# RUN apt-get install -y pear
-RUN apt-get install -y php-pear 
-RUN apt-get install -y php-http
-RUN apt-get install -y php5-dev
-RUN apt-get install -y libcurl3
-RUN apt-get install -y libpcre3-dev
-RUN apt-get install -y libcurl4-openssl-dev
-RUN pear config-set php_ini /etc/php5/apache2/php.ini
-RUN pecl config-set php_ini /etc/php5/apache2/php.ini
-RUN pecl install raphf 
-RUN pecl channel-update pecl.php.net
-RUN pecl install pecl_http-1.7.6
-RUN echo "extension = raphf.so"     >> /etc/php5/apache2/php.ini &&\
-    echo "extension = propro.so"    >> /etc/php5/apache2/php.ini &&\
-    echo "extension = hash.so"      >> /etc/php5/apache2/php.ini &&\
-    echo "extension = iconv.so"     >> /etc/php5/apache2/php.ini &&\
-    echo "extension = json.so"      >> /etc/php5/apache2/php.ini &&\
-    echo "extension = http.so"      >> /etc/php5/apache2/php.ini
-RUN service apache2 restart
-
 # Vhosts - Hosts
 ADD ./vhost_backend /etc/apache2/sites-available/myvhost_backend.conf
 ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
