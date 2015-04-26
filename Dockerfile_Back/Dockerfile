@@ -44,7 +44,7 @@ RUN mkdir /var/log/xdebug &&\
 RUN echo xdebug.remote_enable=1 > /etc/php5/apache2/conf.d/xdebug.ini &&\
     echo xdebug.remote_autostart=0 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
     echo xdebug.remote_connect_back=0 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
-    echo xdebug.remote_port=9001 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
+    echo xdebug.remote_port=9002 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
     echo xdebug.remote_host=172.17.42.1 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
     echo xdebug.remote_mode=req >> /etc/php5/apache2/conf.d/xdebug.ini &&\
     echo xdebug.max_nesting_level = 10000 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
