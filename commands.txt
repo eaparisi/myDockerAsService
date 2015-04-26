@@ -1,11 +1,16 @@
 
+// ------------------------------ BUILDS ------------------------------------------
+
 // To build docker image FRONT
 docker build -t eparisi/yeswead_front --force-rm=true .
 
 // To build docker image BACK
 docker build -t eparisi/yeswead_back --force-rm=true .
 
-http://172.17.42.1  (desde otro container)
+// To build docker image MailCatcher
+docker build -t eparisi/mail_catcher --force-rm=true .
+
+// ------------------------------ RUNS ------------------------------------------
 
 // To instantiate docker image (create docker container)
 docker run --env ROOTPASS=devpass 
@@ -22,3 +27,9 @@ docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /home/eric/git/yeswead_
 
 Back
 docker run --env ROOTPASS=devpass -p 1023:22 -p 1080:80 -v /home/eric/git/yeswead_Back_W2/backend:/var/www/backend:rw --name YesWeAd_Back -d eparisi/yeswead_back
+
+Mail_Catcher
+
+docker run --env ROOTPASS=devpass -p 1024:22 -p 1081:1080 -p 1025:25 --name YesWeAd_Mail_Catcher -d eparisi/mail_catcher
+
+http://172.17.42.1  (desde otro container)
