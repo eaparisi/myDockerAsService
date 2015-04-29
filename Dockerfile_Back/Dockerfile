@@ -70,7 +70,7 @@ RUN apt-get install -y curl
 # Vhosts - Hosts
 ADD ./vhost_backend /etc/apache2/sites-available/myvhost_backend.conf
 ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
-RUN service apache2 restart
+# RUN service apache2 restart
 
 # Hosts del Container
 RUN echo "127.0.0.1 api.yeswead.local yeswead.local www.yeswead.local cdn.yeswead.local localhost" >> /etc/hosts &&\
