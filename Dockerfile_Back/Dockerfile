@@ -70,6 +70,8 @@ RUN apt-get install -y curl
 # Vhosts - Hosts
 ADD ./vhost_backend /etc/apache2/sites-available/myvhost_backend.conf
 ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
+ADD ./vhost_backend_yii /etc/apache2/sites-available/myvhost_backoffice.conf
+ADD ./vhost_frontend_yii /etc/apache2/sites-available/myvhost_frontyii.conf
 # RUN service apache2 restart
 
 # Hosts del Container
@@ -80,6 +82,11 @@ RUN echo "127.0.0.1 api.yeswead.local yeswead.local www.yeswead.local cdn.yeswea
 # RUN apt-get upgrade -y
 
 RUN mkdir /var/www/backend
+
+# Composer
+RUN curl -sS https://getcomposer.org/installer | php
+RUN sudo mv composer.phar /usr/local/bin/composer
+RUN composer global require "fxp/composer-asset-plugin:1.0.0"
 
 # Entrypoint
 ADD ./startup.sh /root/run.sh

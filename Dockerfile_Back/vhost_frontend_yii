@@ -1,0 +1,23 @@
+<VirtualHost *:80> 
+
+	ServerName          frontendyii.yeswead.local
+	DocumentRoot        /var/www/backend/yii/advanced/frontend/web
+
+	<Directory /var/www/backend/yii/advanced/frontend/web>
+    
+		# use mod_rewrite for pretty URL support
+	    	RewriteEngine on
+	    
+		# If a directory or a file exists, use the request directly
+			RewriteCond %{REQUEST_FILENAME} !-f
+			RewriteCond %{REQUEST_FILENAME} !-d
+			
+		# Otherwise forward the request to index.php
+			RewriteRule . index.php
+
+    </Directory>
+
+    ErrorLog "/var/log/apache2/frontendyii.yeswead.local-error.log"
+    CustomLog "/var/log/apache2/frontendyii.yeswead.local-access.log" combined
+
+</VirtualHost>
