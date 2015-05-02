@@ -88,6 +88,12 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN sudo mv composer.phar /usr/local/bin/composer
 RUN composer global require "fxp/composer-asset-plugin:1.0.0"
 
+# User Internal-Container
+RUN useradd -u 1000 incont &&\
+	echo "incont:contpass" | chpasswd &&\
+	usermod -a -G incont www-data &&\
+	usermod -a -G root incont	
+
 # Entrypoint
 ADD ./startup.sh /root/run.sh
 RUN chmod +x /root/run.sh

@@ -7,6 +7,8 @@
     <Directory /var/www/backend>
 
         RewriteEngine on
+        
+        RewriteRule ^backoffice/ yii/advanced/backend/web/index.php
 
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
