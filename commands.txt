@@ -10,6 +10,9 @@ docker build -t eparisi/yeswead_back --force-rm=true .
 // To build docker image MailCatcher
 docker build -t eparisi/mail_catcher --force-rm=true .
 
+// To build MySQL image (from github MySQL Dockerfile)
+docker build -t eparisi/mysql_5_6_24 --force-rm=true .
+
 // ------------------------------ RUNS ------------------------------------------
 
 // To instantiate docker image (create docker container)
@@ -31,7 +34,10 @@ docker run --env ROOTPASS=devpass -p 1023:22 -p 1080:80 -v /home/eric/git/yeswea
 docker run --env ROOTPASS=devpass -p 1023:22 -p 1080:80 -v /c/Users/Esteban/git/yeswead_Back/backend:/var/www/backend:rw --name YesWeAd_Back -d eparisi/yeswead_back
 
 Mail_Catcher
-
 docker run --env ROOTPASS=devpass -p 1024:22 -p 1081:1080 -p 1025:25 --name YesWeAd_Mail_Catcher -d eparisi/mail_catcher
+
+MySQL DB (build from github MySQL Dockerfile)
+docker run --name YesWeAdTestMySQL -v /home/eric/YesWeAdDataDB:/var/lib/mysql -e MYSQL_DATABASE=yesweadDB -e MYSQL_ROOT_PASSWORD=rootdevpass -e MYSQL_USER=admin -e MYSQL_PASSWORD=devpass -p 3306:3306 -d eparisi/mysql_5_6_24
+
 
 http://172.17.42.1  (desde otro container)
