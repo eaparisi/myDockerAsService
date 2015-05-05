@@ -25,7 +25,7 @@ RUN echo America/Argentina/Buenos_Aires > /etc/timezone &&\
 RUN apt-get install -y apache2
 
 # PHP + Modules
-RUN apt-get install -y php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-gd php5-cli php5-sqlite php-apc php5-memcached memcached php5-mcrypt php5-svn php5-imagick php5-common php5-intl php5-pgsql php5-mysql
+RUN apt-get install -y php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-gd php5-cli php5-sqlite php-apc php5-memcached memcached php5-mcrypt php5-svn php5-imagick php5-common php5-intl php5-pgsql php5-mysql php-gettext
 
 # Apache2 ModRewrite
 RUN a2enmod rewrite &&\ 
@@ -97,7 +97,13 @@ RUN echo "127.0.0.1 yeswead.local www.yeswead.local cdn.yeswead.local localhost"
 # Upgrade
 # RUN apt-get upgrade -y
 
+# WebRoot
 RUN mkdir /var/www/frontend
+
+# Locales Faltantes
+RUN locale-gen es_AR es_AR.UTF-8 &&\
+    locale-gen pt_BR pt_BR.UTF-8 &&\
+    dpkg-reconfigure locales
 
 # Entrypoint
 ADD ./startup.sh /root/run.sh
