@@ -69,9 +69,9 @@ RUN apt-get install -y curl
 
 # Vhosts - Hosts
 ADD ./vhost_backend /etc/apache2/sites-available/myvhost_backend.conf
-ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
 ADD ./vhost_backend_yii /etc/apache2/sites-available/myvhost_backoffice.conf
 ADD ./vhost_frontend_yii /etc/apache2/sites-available/myvhost_frontyii.conf
+ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
 # RUN service apache2 restart
 
 # Hosts del Container

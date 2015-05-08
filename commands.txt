@@ -16,6 +16,22 @@ docker build -t eparisi/mysql_5_6_24 --force-rm=true .
 // ------------------------------ RUNS ------------------------------------------
 
 // To instantiate docker image (create docker container)
+
+// --- BACKEND ---
+docker run 	--env ROOTPASS=devpass
+			--env BACKDOMAIN=api.mydomain.local
+			--env BACKOFFICEDOMAIN=backoffice.mydomain.local
+			--env FRONTYIIDOMAIN=frontendyii.mydomain.local
+			
+			--env ADMINDOMAIN=api.mydomain
+			--env FRONTDOMAIN=mydomain.local
+			
+			--env DBHOST=172.17.42.1
+			--env DBUSERNAME=root
+			--env DBPASS=rootdevpass
+			--env DBNAME=yeswead
+			
+
 // --- FRONTEND ---
 docker run 	--env ROOTPASS=devpass
 			--env FRONTDOMAIN=mydomain.local 
