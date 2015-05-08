@@ -78,7 +78,6 @@ RUN echo "extension = raphf.so"     >> /etc/php5/apache2/php.ini &&\
     echo "extension = iconv.so"     >> /etc/php5/apache2/php.ini &&\
     echo "extension = json.so"      >> /etc/php5/apache2/php.ini &&\
     echo "extension = http.so"      >> /etc/php5/apache2/php.ini
-RUN service apache2 restart
 
 # Vhosts - Hosts
 ADD ./vhost_frontend /etc/apache2/sites-available/myvhost_frontend.conf
@@ -106,7 +105,7 @@ RUN locale-gen es_AR es_AR.UTF-8 &&\
     dpkg-reconfigure locales
 
 # Entrypoint
-ADD ./startup.sh /root/run.sh
+ADD ./onrun.sh /root/run.sh
 RUN chmod +x /root/run.sh
 ENTRYPOINT ["/root/run.sh"]
 

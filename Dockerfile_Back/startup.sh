@@ -6,7 +6,6 @@ echo "root:$(cat /root/pw.txt)" | chpasswd
 
 a2ensite myvhost_frontend.conf
 a2ensite myvhost_backend.conf
-a2ensite myvhost_static.conf
 a2ensite myvhost_backoffice.conf
 a2ensite myvhost_frontyii.conf
 
