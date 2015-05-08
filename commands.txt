@@ -31,6 +31,14 @@ docker run 	--env ROOTPASS=devpass
 			--env DBPASS=rootdevpass
 			--env DBNAME=yeswead
 			
+			-p 1023:22 
+			-p 1080:80 
+			
+			-v /home/eric/git/yeswead_Back/backend:/var/www/backend:rw
+			--name YesWeAd_Back
+			-d 
+			eparisi/yeswead_back
+			
 
 // --- FRONTEND ---
 docker run 	--env ROOTPASS=devpass
@@ -45,21 +53,23 @@ docker run 	--env ROOTPASS=devpass
 			-p 1022:22 
 			-p 80:80 
 			
-			-v /home/eric/git/yeswead_Front:/var/www:rw
+			-v /home/eric/git/yeswead_Front/frontend:/var/www/frontend:rw
 			--name YesWeAd_Front
 			-d 
 			eparisi/yeswead_front
 
 Front
-docker run --env ROOTPASS=devpass --env FRONTDOMAIN=mydomain.local --env SERVERALIAS=www.mydomain.local --env BACKAPIDOMAIN=api.mydomain.local --env BACKAPIURL=api.mydomain.local:1080 --env FILESDOMAIN=files.mydomain.local -p 1022:22 -p 80:80 -v /home/eric/git/yeswead_Front:/var/www:rw --name YesWeAd_Front -d eparisi/yeswead_front
-
-
-Front
-docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /home/eric/git/yeswead_Front/frontend:/var/www/frontend:rw --name YesWeAd_Front -d eparisi/yeswead_front
-docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /c/Users/Esteban/git/yeswead_Front/frontend:/var/www/frontend:rw --name YesWeAd_Front -d eparisi/yeswead_front
-docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /home/ubuntu/git/yeswead_Front/frontend:/var/www/frontend:rw --name YesWeAd_Front -d eparisi/yeswead_front
+Ubuntu Local:			docker run --env ROOTPASS=devpass --env FRONTDOMAIN=mydomain.local --env SERVERALIAS=www.mydomain.local --env BACKAPIDOMAIN=api.mydomain.local --env BACKAPIURL=api.mydomain.local:1080 --env FILESDOMAIN=files.mydomain.local -p 1022:22 -p 80:80 -v /home/eric/git/yeswead_Front:/var/www:rw --name YesWeAd_Front -d eparisi/yeswead_front
+Windows boot2docker:	docker run --env ROOTPASS=devpass --env FRONTDOMAIN=mydomain.local --env SERVERALIAS=www.mydomain.local --env BACKAPIDOMAIN=api.mydomain.local --env BACKAPIURL=api.mydomain.local:1080 --env FILESDOMAIN=files.mydomain.local -p 1022:22 -p 80:80 -v /c/Users/Esteban/git/yeswead_Front:/var/www:rw --name YesWeAd_Front -d eparisi/yeswead_front
 
 Back
+Ubuntu Local: 			docker run --env ROOTPASS=devpass --env BACKDOMAIN=api.mydomain.local --env BACKOFFICEDOMAIN=backoffice.mydomain.local --env FRONTYIIDOMAIN=frontendyii.mydomain.local --env ADMINDOMAIN=api.mydomain --env FRONTDOMAIN=mydomain.local --env DBHOST=172.17.42.1 --env DBUSERNAME=root --env DBPASS=rootdevpass --env DBNAME=yeswead -p 1023:22 -p 1080:80 -v /home/eric/git/yeswead_Back/backend:/var/www/backend:rw --name YesWeAd_Back -d eparisi/yeswead_back
+Windows boot2docker:	docker run --env ROOTPASS=devpass --env BACKDOMAIN=api.mydomain.local --env BACKOFFICEDOMAIN=backoffice.mydomain.local --env FRONTYIIDOMAIN=frontendyii.mydomain.local --env ADMINDOMAIN=api.mydomain --env FRONTDOMAIN=mydomain.local --env DBHOST=172.17.42.1 --env DBUSERNAME=root --env DBPASS=rootdevpass --env DBNAME=yeswead -p 1023:22 -p 1080:80 -v /c/Users/Esteban/git/yeswead_Back/backend:/var/www/backend:rw --name YesWeAd_Back -d eparisi/yeswead_back
+
+
+
+
+Back ----OLD----
 docker run --env ROOTPASS=devpass -p 1023:22 -p 1080:80 -v /home/eric/git/yeswead_Back/backend:/var/www/backend:rw --name YesWeAd_Back -d eparisi/yeswead_back
 docker run --env ROOTPASS=devpass -p 1023:22 -p 1080:80 -v /c/Users/Esteban/git/yeswead_Back/backend:/var/www/backend:rw --name YesWeAd_Back -d eparisi/yeswead_back
 docker run --env ROOTPASS=devpass -p 1023:22 -p 1080:80 -v /home/ubuntu/git/yeswead_Back/backend:/var/www/backend:rw --name YesWeAd_Back -d eparisi/yeswead_back
@@ -73,3 +83,9 @@ docker run --name YesWeAdTestMySQL -v /home/ubuntu/YesWeAdDataDB:/var/lib/mysql 
 
 
 http://172.17.42.1  (desde otro container)
+
+
+Front ----OLD----
+docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /home/eric/git/yeswead_Front/frontend:/var/www/frontend:rw --name YesWeAd_Front -d eparisi/yeswead_front
+docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /c/Users/Esteban/git/yeswead_Front/frontend:/var/www/frontend:rw --name YesWeAd_Front -d eparisi/yeswead_front
+docker run --env ROOTPASS=devpass -p 1022:22 -p 80:80 -v /home/ubuntu/git/yeswead_Front/frontend:/var/www/frontend:rw --name YesWeAd_Front -d eparisi/yeswead_front
