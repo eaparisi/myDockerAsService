@@ -25,6 +25,7 @@ then
 	chown 1000:1000 generalconf.php
 	sed -i "s/api.yeswead.local/$BACKAPIURL/g" /var/www/frontend/config/generalconf.php
 	sed -i "s/files.yeswead.local/$FILESDOMAIN/g" /var/www/frontend/config/generalconf.php
+	sed -i "s/\/yeswead.local/\/$SITEURL/g" /var/www/frontend/config/generalconf.php	
 	sed -i "s/yeswead.local/$FRONTDOMAIN/g" /var/www/frontend/config/generalconf.php
 fi
 
