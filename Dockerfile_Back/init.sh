@@ -24,19 +24,20 @@ cp /usr/share/zoneinfo/America/Buenos_Aires /etc/localtime
 file="/var/www/backend/application/config/yeswead.php"
 if [ ! -f "$file" ]
 then
-	cd /var/www/backend/application/config/
-	cp yeswead.tpl.php yeswead.php
-	chown 1000:1000 yeswead.php
-	
-	sed -i "s/api.yeswead.local/$BACKDOMAIN/g" /var/www/backend/application/config/yeswead.php
-	sed -i "s/api.yeswead/$ADMINDOMAIN/g" /var/www/backend/application/config/yeswead.php
-	sed -i "s/yeswead.local/$FRONTDOMAIN/g" /var/www/backend/application/config/yeswead.php
-	
-	sed -i "s/dbhost/$DBHOST/g" /var/www/backend/application/config/yeswead.php
-	sed -i "s/dbusername/$DBUSERNAME/g" /var/www/backend/application/config/yeswead.php
-	sed -i "s/dbpass/$DBPASS/g" /var/www/backend/application/config/yeswead.php
-	sed -i "s/dbname/$DBNAME/g" /var/www/backend/application/config/yeswead.php	
+	rm $file
 fi
+cd /var/www/backend/application/config/
+cp yeswead.tpl.php yeswead.php
+chown 1000:1000 yeswead.php
+
+sed -i "s/api.yeswead.local/$BACKDOMAIN/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/api.yeswead/$ADMINDOMAIN/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/yeswead.local/$FRONTDOMAIN/g" /var/www/backend/application/config/yeswead.php
+
+sed -i "s/dbhost/$DBHOST/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/dbusername/$DBUSERNAME/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/dbpass/$DBPASS/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/dbname/$DBNAME/g" /var/www/backend/application/config/yeswead.php	
 
 /usr/sbin/sshd -D &
 wait ${!}

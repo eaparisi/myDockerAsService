@@ -104,7 +104,7 @@ RUN locale-gen es_AR es_AR.UTF-8 &&\
     dpkg-reconfigure locales
 
 # Entrypoint
-ADD ./onruncontainer.sh /root/run.sh
+ADD ./onruncont.sh /root/run.sh
 RUN chmod +x /root/run.sh
 ENTRYPOINT ["/root/run.sh"]
 

@@ -18,16 +18,17 @@ echo "127.0.0.1 $FRONTDOMAIN www.$FRONTDOMAIN cdn.$FRONTDOMAIN localhost" >> /et
 	echo "172.17.42.1 $BACKAPIDOMAIN" >> /etc/hosts
 
 file="/var/www/frontend/config/generalconf.php"
-if [ ! -f "$file" ]
+if [ -f "$file" ]
 then
-	cd /var/www/frontend/config/
-	cp generalconf.tpl.php generalconf.php
-	chown 1000:1000 generalconf.php
-	sed -i "s/api.yeswead.local/$BACKAPIURL/g" /var/www/frontend/config/generalconf.php
-	sed -i "s/files.yeswead.local/$FILESDOMAIN/g" /var/www/frontend/config/generalconf.php
-	sed -i "s/\/yeswead.local/\/$SITEURL/g" /var/www/frontend/config/generalconf.php	
-	sed -i "s/yeswead.local/$FRONTDOMAIN/g" /var/www/frontend/config/generalconf.php
+	rm $file
 fi
+cd /var/www/frontend/config/
+cp generalconf.tpl.php generalconf.php
+chown 1000:1000 generalconf.php
+sed -i "s/api.yeswead.local/$BACKAPIURL/g" /var/www/frontend/config/generalconf.php
+sed -i "s/files.yeswead.local/$FILESDOMAIN/g" /var/www/frontend/config/generalconf.php
+sed -i "s/\/yeswead.local/\/$SITEURL/g" /var/www/frontend/config/generalconf.php	
+sed -i "s/yeswead.local/$FRONTDOMAIN/g" /var/www/frontend/config/generalconf.php
 
 /usr/sbin/sshd -D &
 wait ${!}
