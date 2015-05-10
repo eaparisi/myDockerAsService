@@ -1,0 +1,34 @@
+fronttest:
+  build: Dockerfile_Front
+  ports:
+   - "1024:22"
+   - "8082:80"
+  environment:
+   - ROOTPASS=testword7395
+   - SITEURL=testing.yeswead.com:8082
+   - FRONTDOMAIN=testing.yeswead.com
+   - SERVERALIAS=www.testing.yeswead.com
+   - BACKAPIDOMAIN=apitesting.yeswead.com
+   - BACKAPIURL=apitesting.yeswead.com:8083
+   - FILESDOMAIN=filestesting.yeswead.com:8083
+  volumes:
+   - /home/ubuntu/git/yeswead_Src_Testing/frontend:/var/www/frontend:rw
+backtest:
+  build: Dockerfile_Back
+  ports:
+   - "1025:22"
+   - "8083:80"
+  environment:
+   - ROOTPASS=testpass3489
+   - BACKDOMAIN=apitesting.yeswead.com
+   - BACKOFFICEDOMAIN=backofficetesting.yeswead.com
+   - FRONTYIIDOMAIN=frontyiitesting.yeswead.com
+   - FILESDOMAIN=filestesting.local
+   - ADMINDOMAIN=apitesting
+   - FRONTDOMAIN=testing.yeswead.com
+   - DBHOST=172.17.42.1
+   - DBUSERNAME=root
+   - DBPASS=rdesapass1520
+   - DBNAME=yesweadTesting
+  volumes:
+   - /home/ubuntu/git/yeswead_Src_Testing/backend:/var/www/backend:rw

@@ -1,0 +1,45 @@
+front:
+  build: Dockerfile_Front
+  ports:
+   - "1022:22"
+   - "80:80"
+  environment:
+   - ROOTPASS=devpass
+   - SITEURL=mydomain.local
+   - FRONTDOMAIN=mydomain.local
+   - SERVERALIAS=www.mydomain.local
+   - BACKAPIDOMAIN=api.mydomain.local
+   - BACKAPIURL=api.mydomain.local:1080
+   - FILESDOMAIN=files.mydomain.local:1080
+  volumes:
+   - /c/Users/Esteban/git/yeswead_Front/frontend:/var/www/frontend:rw
+back:
+  build: Dockerfile_Back
+  ports:
+   - "1023:22"
+   - "1080:80"
+  environment:
+   - ROOTPASS=devpass
+   - BACKDOMAIN=api.mydomain.local
+   - BACKOFFICEDOMAIN=backoffice.mydomain.local
+   - FRONTYIIDOMAIN=frontendyii.mydomain.local
+   - FILESDOMAIN=files.mydomain.local
+   - ADMINDOMAIN=api.mydomain
+   - FRONTDOMAIN=mydomain.local
+   - DBHOST=172.17.42.1
+   - DBUSERNAME=root
+   - DBPASS=rootdevpass
+   - DBNAME=yeswead
+  volumes:
+   - /c/Users/Esteban/git/yeswead_Back/backend:/var/www/backend:rw
+db:
+  image: mysql:5.6.24
+  ports:
+   - "3306:3306"
+  environment:
+   - MYSQL_DATABASE=yeswead
+   - MYSQL_ROOT_PASSWORD=rootdevpass
+   - MYSQL_USER=admin
+   - MYSQL_PASSWORD=devpass
+  volumes:
+   - /c/Users/Esteban/YesWeAdDataDB:/var/lib/mysql:rw

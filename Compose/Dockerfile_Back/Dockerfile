@@ -47,8 +47,7 @@ RUN echo xdebug.remote_enable=1 > /etc/php5/apache2/conf.d/xdebug.ini &&\
     echo xdebug.remote_port=9002 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
     echo xdebug.remote_host=172.17.42.1 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
     echo xdebug.remote_mode=req >> /etc/php5/apache2/conf.d/xdebug.ini &&\
-    echo xdebug.max_nesting_level = 10000 >> /etc/php5/apache2/conf.d/xdebug.ini &&\
-    service apache2 restart
+    echo xdebug.max_nesting_level = 10000 >> /etc/php5/apache2/conf.d/xdebug.ini
 
 # SSH
 RUN apt-get install -y openssh-server 
@@ -71,7 +70,7 @@ RUN apt-get install -y curl
 ADD ./vhost_backend /etc/apache2/sites-available/myvhost_backend.conf
 ADD ./vhost_backend_yii /etc/apache2/sites-available/myvhost_backoffice.conf
 ADD ./vhost_frontend_yii /etc/apache2/sites-available/myvhost_frontyii.conf
-ADD ./vhost_static /etc/apache2/sites-available/myvhost_static.conf
+ADD ./vhost_files /etc/apache2/sites-available/myvhost_files.conf
 # RUN service apache2 restart
 
 # Hosts del Container
@@ -95,7 +94,7 @@ RUN useradd -u 1000 incont &&\
 	usermod -a -G root incont	
 
 # Entrypoint
-ADD ./init.sh /root/run.sh
+ADD ./initcont.sh /root/run.sh
 RUN chmod +x /root/run.sh
 ENTRYPOINT ["/root/run.sh"]
 

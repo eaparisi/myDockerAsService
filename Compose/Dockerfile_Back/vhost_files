@@ -1,0 +1,4 @@
+<VirtualHost *:80>
+    ServerName files.yeswead.local
+    DocumentRoot "/var/www/backend/uploads"
+</VirtualHost>
