@@ -23,7 +23,7 @@ backdev:
    - BACKDOMAIN=apidesarrollo.yeswead.com
    - BACKOFFICEDOMAIN=backofficedesarrollo.yeswead.com
    - FRONTYIIDOMAIN=frontyiidesarrollo.yeswead.com
-   - FILESDOMAIN=filesdesarrollo.local
+   - FILESDOMAIN=filesdesarrollo.yeswead.com
    - ADMINDOMAIN=apidesarrollo
    - FRONTDOMAIN=desarrollo.yeswead.com
    - DBHOST=172.17.42.1

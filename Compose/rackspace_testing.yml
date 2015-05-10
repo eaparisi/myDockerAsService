@@ -23,7 +23,7 @@ backtest:
    - BACKDOMAIN=apitesting.yeswead.com
    - BACKOFFICEDOMAIN=backofficetesting.yeswead.com
    - FRONTYIIDOMAIN=frontyiitesting.yeswead.com
-   - FILESDOMAIN=filestesting.local
+   - FILESDOMAIN=filestesting.yeswead.com
    - ADMINDOMAIN=apitesting
    - FRONTDOMAIN=testing.yeswead.com
    - DBHOST=172.17.42.1
