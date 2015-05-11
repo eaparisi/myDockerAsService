@@ -33,7 +33,7 @@ back:
   volumes:
    - /home/eric/git/yeswead_Back/backend:/var/www/backend:rw
 db:
-  image: mysql:5.6.24
+  image: mysql:5.5.40
   ports:
    - "3306:3306"
   environment:

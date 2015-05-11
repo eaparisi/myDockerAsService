@@ -27,6 +27,12 @@ RUN apt-get install -y apache2
 # PHP + Modules
 RUN apt-get install -y php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-gd php5-cli php5-sqlite php-apc php5-memcached memcached php5-mcrypt php5-svn php5-imagick php5-common php5-intl php5-pgsql php5-mysql
 
+# Using PHP 5.4
+# RUN apt-get install -y software-properties-common
+# RUN add-apt-repository ppa:ondrej/php5-oldstable
+# RUN apt-get update
+# RUN apt-get install -y php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-gd php5-cli php5-sqlite php-apc php5-memcached memcached php5-mcrypt php5-svn php5-imagick php5-common php5-intl php5-pgsql php5-mysql
+
 # Apache2 ModRewrite
 RUN a2enmod rewrite &&\ 
     sed -i 's/DocumentRoot\ \/var\/www\/html/DocumentRoot\ \/var\/www\n<Directory\ "\/var\/www">\n\ AllowOverride\ All\n<\/Directory>\n/g' /etc/apache2/sites-available/000-default.conf &&\
