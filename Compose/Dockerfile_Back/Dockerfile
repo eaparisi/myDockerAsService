@@ -1,8 +1,3 @@
-# Use Ubuntu 14.10 as base image
-# FROM ubuntu:utopic
-# Add Ubuntu mirrors
-# RUN echo 'deb mirror://mirrors.ubuntu.com/mirrors.txt utopic main universe multiverse' > /etc/apt/sources.list
-
 # Use Ubuntu 14.04 as base image
 FROM ubuntu:trusty
 # Add Ubuntu mirrors
@@ -25,7 +20,7 @@ RUN echo America/Argentina/Buenos_Aires > /etc/timezone &&\
 RUN apt-get install -y apache2
 
 # PHP + Modules
-RUN apt-get install -y php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-gd php5-cli php5-sqlite php-apc php5-memcached memcached php5-mcrypt php5-svn php5-imagick php5-common php5-intl php5-pgsql php5-mysql
+RUN apt-get install -y php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-gd php5-cli php5-sqlite php-apc php5-memcached memcached php5-mcrypt php5-imagick php5-common php5-intl php5-mysql
 
 # Using PHP 5.4
 # RUN apt-get install -y software-properties-common
@@ -65,9 +60,6 @@ RUN mkdir /var/run/sshd &&\
 
 # Nano
 RUN apt-get install -y nano
-
-# Subversion
-RUN apt-get install -y subversion
 
 # Curl
 RUN apt-get install -y curl
