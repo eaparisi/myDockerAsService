@@ -1,0 +1,34 @@
+front2:
+  build: Dockerfile_Front
+  ports:
+   - "1024:22"
+   - "1081:80"
+  environment:
+   - ROOTPASS=devpass
+   - SITEURL=myapp.local:1081
+   - FRONTDOMAIN=myapp.local
+   - SERVERALIAS=www.myapp.local
+   - BACKAPIDOMAIN=api.myapp.local
+   - BACKAPIURL=api.myapp.local:1082
+   - FILESDOMAIN=files.myapp.local:1082
+  volumes:
+   - /home/eric/git/yeswead_Front_2/frontend:/var/www/frontend:rw
+back2:
+  build: Dockerfile_Back
+  ports:
+   - "1025:22"
+   - "1082:80"
+  environment:
+   - ROOTPASS=devpass
+   - BACKDOMAIN=api.myapp.local
+   - BACKOFFICEDOMAIN=backoffice.myapp.local
+   - FRONTYIIDOMAIN=frontendyii.myapp.local
+   - FILESDOMAIN=files.myapp.local
+   - ADMINDOMAIN=api.myapp
+   - FRONTDOMAIN=myapp.local
+   - DBHOST=172.17.42.1
+   - DBUSERNAME=root
+   - DBPASS=rootdevpass
+   - DBNAME=yeswead2
+  volumes:
+   - /home/eric/git/yeswead_Back_2/backend:/var/www/backend:rw

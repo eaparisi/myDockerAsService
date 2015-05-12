@@ -7,3 +7,8 @@ docker-compose -f local_ubuntu.yml rm
 docker-compose -f local_boot2docker.yml up -d
 docker-compose -f rackspace_desarrollo.yml up -d
 docker-compose -f rackspace_testing.yml up -d
+
+CRONS PROD (in crontab)
+
+00 00 * * * cd /var/www/YesWeAd/backend/cron; php5 sendmailprojects.php
+0 * * * * curl http://api.yeswead.com/run_crons
