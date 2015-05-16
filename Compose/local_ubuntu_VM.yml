@@ -1,0 +1,46 @@
+front:
+  build: Dockerfile_Front
+  ports:
+   - "1022:22"
+   - "2080:80"
+  environment:
+   - ROOTPASS=devpass
+   - SITEURL=ywa.local:2080
+   - FRONTDOMAIN=ywa.local
+   - SERVERALIAS=www.ywa.local
+   - BACKAPIDOMAIN=api.ywa.local
+   - BACKAPIURL=api.ywa.local:1080
+   - FILESDOMAIN=files.ywa.local:1080
+  volumes:
+   - /home/udocker/share/git/yeswead_Front/frontend:/var/www/frontend:rw
+back:
+  build: Dockerfile_Back
+  ports:
+   - "1023:22"
+   - "1080:80"
+  environment:
+   - ROOTPASS=devpass
+   - BACKDOMAIN=api.ywa.local
+   - BACKOFFICEDOMAIN=backoffice.ywa.local
+   - FRONTYIIDOMAIN=frontendyii.ywa.local
+   - FILESDOMAIN=files.ywa.local
+   - ADMINDOMAIN=api.ywa
+   - FRONTDOMAIN=ywa.local
+   - DBHOST=172.17.42.1
+   - DBUSERNAME=root
+   - DBPASS=rootdevpass
+   - DBNAME=yeswead
+  volumes:
+   - /home/udocker/share/git/yeswead_Back/backend:/var/www/backend:rw
+db:
+  image: mysql:5.5.40
+  ports:
+   - "3306:3306"
+  environment:
+   - MYSQL_DATABASE=yeswead
+   - MYSQL_ROOT_PASSWORD=rootdevpass
+   - MYSQL_USER=admin
+   - MYSQL_PASSWORD=devpass
+  volumes:
+   - /home/udocker/YesWeAdDataDB:/var/lib/mysql:rw
+

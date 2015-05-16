@@ -12,3 +12,8 @@ CRONS PROD (in crontab)
 
 00 00 * * * cd /var/www/YesWeAd/backend/cron; php5 sendmailprojects.php
 0 * * * * curl http://api.yeswead.com/run_crons
+
+-----------------------------------------------------------------------
+
+sudo mount -t vboxsf eric /home/udocker/share -o uid=1000,gid=1000
+
