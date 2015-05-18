@@ -25,7 +25,8 @@ back:
    - FRONTYIIDOMAIN=frontendyii.ywa.local
    - FILESDOMAIN=files.ywa.local
    - ADMINDOMAIN=api.ywa
-   - FRONTDOMAIN=ywa.local
+   - FRONTDOMAIN=ywa.local:2080
+   - COOKIEDOMAIN=.ywa.local
    - DBHOST=172.17.42.1
    - DBUSERNAME=root
    - DBPASS=rootdevpass

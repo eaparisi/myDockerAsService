@@ -26,6 +26,7 @@ back:
    - FILESDOMAIN=files.mydomain.local
    - ADMINDOMAIN=api.mydomain
    - FRONTDOMAIN=mydomain.local
+   - COOKIEDOMAIN=.mydomain.local
    - DBHOST=172.17.42.1
    - DBUSERNAME=root
    - DBPASS=rootdevpass

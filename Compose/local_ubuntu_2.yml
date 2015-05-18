@@ -25,10 +25,17 @@ back2:
    - FRONTYIIDOMAIN=frontendyii.myapp.local
    - FILESDOMAIN=files.myapp.local
    - ADMINDOMAIN=api.myapp
-   - FRONTDOMAIN=myapp.local
+   - FRONTDOMAIN=myapp.local:1081
+   - COOKIEDOMAIN=.myapp.local
    - DBHOST=172.17.42.1
    - DBUSERNAME=root
    - DBPASS=rootdevpass
    - DBNAME=yeswead2
+   - MAILGUNBOOL=false
+   - MAILPROTOCOL=smtp
+   - MAILHOST=172.17.42.1
+   - MAILUSER=
+   - MAILPASS=
+   - MAILPORT=25
   volumes:
    - /home/eric/git/yeswead_Back_2/backend:/var/www/backend:rw

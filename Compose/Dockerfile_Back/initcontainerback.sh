@@ -58,6 +58,7 @@ chown 1000:1000 yeswead.php
 
 sed -i "s/api.yeswead.local/$BACKDOMAIN/g" /var/www/backend/application/config/yeswead.php
 sed -i "s/api.yeswead/$ADMINDOMAIN/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/.yeswead.local/$COOKIEDOMAIN/g" /var/www/backend/application/config/yeswead.php
 sed -i "s/yeswead.local/$FRONTDOMAIN/g" /var/www/backend/application/config/yeswead.php
 
 sed -i "s/mailgunbool/$MAILGUNBOOL/g" /var/www/backend/application/config/yeswead.php

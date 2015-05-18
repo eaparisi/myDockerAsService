@@ -26,10 +26,17 @@ back:
    - FILESDOMAIN=files.mydomain.local
    - ADMINDOMAIN=api.mydomain
    - FRONTDOMAIN=mydomain.local
+   - COOKIEDOMAIN=.mydomain.local
    - DBHOST=172.17.42.1
    - DBUSERNAME=root
    - DBPASS=rootdevpass
    - DBNAME=yeswead
+   - MAILGUNBOOL=false
+   - MAILPROTOCOL=smtp
+   - MAILHOST=172.17.42.1
+   - MAILUSER=
+   - MAILPASS=
+   - MAILPORT=25
   volumes:
    - /c/Users/Esteban/git/yeswead_Back/backend:/var/www/backend:rw
 db:
@@ -43,3 +50,11 @@ db:
    - MYSQL_PASSWORD=devpass
   volumes:
    - /c/Users/Esteban/YesWeAdDataDB:/var/lib/mysql:rw
+mail:
+  build: Dockerfile_Mail
+  ports:
+   - "3080:1080"
+   - "25:25"
+   - "1026:22"
+  environment:
+   - ROOTPASS=devpass
