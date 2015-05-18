@@ -92,7 +92,7 @@ RUN useradd -u 1000 incont &&\
 	usermod -a -G root incont	
 
 # Entrypoint
-ADD ./initcont.sh /root/run.sh
+ADD ./initcontainer.sh /root/run.sh
 RUN chmod +x /root/run.sh
 ENTRYPOINT ["/root/run.sh"]
 

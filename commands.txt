@@ -17,3 +17,5 @@ CRONS PROD (in crontab)
 
 sudo mount -t vboxsf eric /home/udocker/share -o uid=1000,gid=1000
 
+Mail_Catcher
+docker run --env ROOTPASS=devpass -p 1024:22 -p 1081:1080 -p 1025:25 --name YesWeAd_Mail_Catcher -d eparisi/mail_catcher

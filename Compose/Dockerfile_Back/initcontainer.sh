@@ -60,6 +60,13 @@ sed -i "s/api.yeswead.local/$BACKDOMAIN/g" /var/www/backend/application/config/y
 sed -i "s/api.yeswead/$ADMINDOMAIN/g" /var/www/backend/application/config/yeswead.php
 sed -i "s/yeswead.local/$FRONTDOMAIN/g" /var/www/backend/application/config/yeswead.php
 
+sed -i "s/mailgunbool/$MAILGUNBOOL/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/mailprotocol/$MAILPROTOCOL/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/mailhost/$MAILHOST/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/mailuser/$MAILUSER/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/mailpass/$MAILPASS/g" /var/www/backend/application/config/yeswead.php
+sed -i "s/mailport/$MAILPORT/g" /var/www/backend/application/config/yeswead.php
+
 sed -i "s/dbhost/$DBHOST/g" /var/www/backend/application/config/yeswead.php
 sed -i "s/dbusername/$DBUSERNAME/g" /var/www/backend/application/config/yeswead.php
 sed -i "s/dbpass/$DBPASS/g" /var/www/backend/application/config/yeswead.php

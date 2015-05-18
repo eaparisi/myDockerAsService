@@ -42,6 +42,6 @@ EXPOSE 25
 EXPOSE 22
 
 # Entrypoint
-ADD ./startup2.sh /root/run.sh
+ADD ./startup.sh /root/run.sh
 RUN chmod +x /root/run.sh
 ENTRYPOINT ["/root/run.sh"]
